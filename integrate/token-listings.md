@@ -1,20 +1,23 @@
 # Token Listings
 
-## How to create a new pool with IBC assets
+## How to add Assets to the Osmosis Zone
 
 Osmosis is a automated market maker blockchain. This means any IBC-enabled zone can add its token as an asset to be traded on Osmosis AMM completely permissionlessly. Because Osmosis is fundamentally designed as an IBC-native AMM that trades IBC tokens, rather than tokens issued on the Osmosis zone, there are additional nuances to understand and steps to be taken in order to ensure your asset is supported by Osmosis.
 
 This document lays out the prerequisites and the process that is needed to ensure that your token meets the interchain UX standards set by Osmosis.
 
 ### Prerequisites
-1. Zone must have IBC token transferred enabled (ICS20 standard).
-2. Assets to be traded should be a fungible `sdk.Coins` asset.
-3. Highly reliable, highly available altruistic (as in relay tx fees paid on behalf of user) relayer service.
-4. Highly reliable, highly available, and scalable RPC/REST endpoint infrastructure.
-
+1. The integrating zone must have IBC token transfer (ICS20 standard) enabled.
+2. Assets to be traded in liquidity pools should be fungible.
+3. Highly reliable, highly available, and altruistic relayer service.
+* For the time being, the relayer must pay tx gas fees on the receiving chain.
+5. Highly reliable, highly available, and scalable RPC/REST endpoint infrastructure.
+* It is recommended to enable WebSocket Secure (wss://...) RPC.
 
 ### 0. Enabling IBC transfers
 Because only IBC assets that have been transferred to Osmosis can be traded on Osmosis, the native chain of the asset must have IBC transfers enabled. Cosmos defines the fungible IBC token transfer standard in [ICS20](https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transfer) specification.
+
+Cosmos SDK-native (`sdk.Coins`) assets will be easier to integrate, while integrating CosmWasm (CW20) assets requires a few more steps.
 
 At this time, only chains using Cosmos-SDK v0.40+ (aka Stargate) can support IBC transfers.
 
@@ -28,12 +31,14 @@ Recommended readings:
 * [IBC Overview](https://docs.cosmos.network/master/ibc/overview.html) - To understand IBC clients, connections, 
 * [How to Upgrade IBC Chains and their Clients](https://docs.cosmos.network/master/ibc/upgrades/quick-guide.html)
 
-### 1. Add your chain to cosmos/chain-registry and SLIP73
+### 1. Registration
+
+Add your chain to cosmos/chain-registry and SLIP-173
 
 #### Cosmos Chain Registry
 Make a PR to add your chain's entry to the [Cosmos Chain Registry](https://github.com/cosmos/chain-registry). This allows Osmosis frontend to suggest your chain for asset deposit/withdrawals(IBC transfers).
 
-Make sure to include at least one reliable RPC, gRPC, REST endpoint behind https. Refer to the [Osmosis entry](https://github.com/cosmos/chain-registry/blob/master/osmosis/chain.json) as an example.
+Make sure to include at least one reliable RPC, gRPC, and REST endpoint behind https. Refer to the [Osmosis entry](https://github.com/cosmos/chain-registry/blob/master/osmosis/chain.json) as an example.
 
 ### 2. Setting up and operating relayer to Osmosis
 Relayers are responsible of transferring IBC packets between Osmosis chain and the native chain of an asset. All Osmosis 'deposits' and 'withdrawals' are IBC transfers which dedicated relayers process.
