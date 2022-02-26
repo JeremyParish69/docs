@@ -32,7 +32,7 @@ The Cosmos Chain Registry is used as a single source of truth and is used to loo
     2. [chain.schema.json](https://github.com/cosmos/chain-registry/blob/master/chain.schema.json)
     3. [assetlist.schema.json](https://github.com/cosmos/chain-registry/blob/master/assetlist.schema.json)
     - Note: It is recommended to refer to another registration to serve as an example, such as [Osmosis' registration](https://github.com/cosmos/chain-registry/blob/master/osmosis/chain.json)
-2. Submit a pull request branch with necessary changes to the following:
+2. Submit a pull request with necessary changes to the following:
     - `chain.json`:
         - Be sure to include `bech32_prefix`
             - e.g., `"bech32_prefix": "cosmos",`
@@ -83,7 +83,7 @@ The Osmosis Assetlists Registry is used as a local source of truth for assets di
 1. Review the [Osmosis Assetlists Registry](https://github.com/osmosis-labs/assetlists) docs:
     1. [README.md](https://github.com/osmosis-labs/assetlists/blob/main/README.md)
     2. [assetlist.schema.json](https://github.com/osmosis-labs/assetlists/blob/main/assetlist.schema.json)
-2. Submit a pull request branch with necessary changes to the following:
+2. Submit a pull request with necessary changes to the following:
     - `osmosis-1/osmosis-1.assetlist.json`:
         - Be sure to include the CoinGecko ID if one exists
     - `images/`
@@ -116,6 +116,6 @@ CosmosSDK Chain addresses can be represented with a chain-specific string preced
 ### Steps
 
 1. Review the [SLIP173 Registry](https://github.com/satoshilabs/slips/blob/master/slip-0173.md):
-2. Submit a pull request branch with necessary changes to the following:
-    - `slip-0173/.md`:
+2. Submit a pull request with necessary changes to the following:
+    - `slip-0173.md`:
         - Add the chain name (as a link to the website) and prefix(es) into the *Registered human-readable parts* table
