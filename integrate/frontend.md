@@ -1,6 +1,6 @@
 # Osmosis Zone Front-End
 
-## How to add Assets onto the Osmosis Assets Page
+## How to Add an Asset onto the Osmosis Assets Page
 
 ### Purpose
 
@@ -16,17 +16,19 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     - See: [How to register an Asset onto the Osmosis Assetlists Registry](...)
 - Chain registered onto SLIP173
     - See: [How to Registrer onto SLIP173](...)
-- IBC Connection configured
-- Multiple relayers set up to relay packet between chains
+- Multiple relayers set up to relay packets between chains
     - See: [How to set up a Relayer](...)
-    - Don't want to set up a Relayer? See: [Shop for a Relayer as a Service(RAAS) Provider](...) 
-    - IBC token transfer has been validated
+    - Don't want to set up a Relayer? See: [Shop for a Relayer as a Service (RAAS) Provider](...) 
+- IBC token transfer has been validated
+	- See: [How to validate IBC token transfers](...)
 - Assets listed on CoinGecko (optional)
     - See: [How to enlist assets onto CoinGecko](...)
 - Chain added to Mintscan (optional)
     - See: [How to add a chain to Mintscan](...)
+- Asset price added to Osmosis Zone (co-requisite)
+    - See: [How to Add Asset Price to Osmosis Zone](...)
 - An acceptable OSMO pool added to the Osmosis Trade page (co-requisite)
-    - See: [How to add a Pool to the Osmosis Trade page](...)
+    - See: [How to Add a Pool to the Osmosis Trade Page](...)
 
 ### Requirements
 
@@ -41,6 +43,7 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
 - Asset data:
     - Token Logo Image files (both .png and .svg is recommended)
         - Note: Currently, a .png is required to be able to render on info.osmosis.zone
+        - Note: image files shall be title exactly with the token Symbol in lowercase. E.g., for 'ATOM', title the files `atom.png` and `atom.svg`
     - coin minimal denomination
         - For CW20 tokens:
             - The minimal denomination is `cw20:<CONTRACT ADDRESS>`
@@ -60,7 +63,7 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
 1. Review the [Osmosis Frontend Repo](https://github.com/osmosis-labs/osmosis-frontend) docs:
     1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
 2. Submit a pull request branch with necessary changes to the following:
-    - `public/assets/tokens/
+    - `public/assets/tokens/`:
         - Add token logo images
     - `src/config.ts`:
         - Add Assets to `IBCAssetInfos` 
@@ -77,6 +80,7 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
             - Include chain explorer path
                 - Opt for Mintscan, if available
                 - Note: watch out for and remove any dollar sign ($) in the URL, which may be included in the Explorer URL in the Cosmos Chain Registry
+	    - See example below
 3. Validate the deposit and withdrawal of the asset(s) from the staging link
 4. Any acceptable pools can be added to the Trade page
     - The criteria for *acceptable* pools are roughly as follows:
@@ -101,7 +105,7 @@ Examples of config.ts::IBCAssetInfos:
     },
 ```
 - NETA, a CW20 token from Juno:
-    - Note: channel-42 is Osmosis' channel to Juno for native Juno assets, but channel-169 is Osmosis' channel to this ICS20 contract on Juno, which currently accomodates NETA, and potentially other CW20 tokens in future 
+    - Note: channel-42 is Osmosis' channel to Juno for native Juno assets, but channel-169 is Osmosis' channel to this ICS20 contract on Juno, which currently accomodates NETA, and potentially other CW20 tokens in the future 
 ```
     {
         counterpartyChainId: 'juno-1',
@@ -176,3 +180,129 @@ Examples of config.ts::EmbedChainInfos: ChainInfoWithExplorer:
 		explorerUrlToTx: 'https://www.mintscan.io/gravity-bridge/txs/{txHash}',
 	},
 ```
+
+### Next Steps
+
+- See also:
+	- [How to Add Asset Price to Osmosis Zone](...)
+	- [How to Add a Pool to the Osmosis Trade Page](...)
+
+
+## How to Add a Pool to the Osmosis Trade Page
+
+### Purpose
+
+The Osmosis Zone Trade page router looks at a limited set of pools to choose the 'best' pool based on which pool or route offers the best spot price at $0 trade value. It does not change take slippage or swap fee into account when routing, so it's important to only include pools with a reasonably low swap fee (usually 0.2-0.3%), and high liquiditiy. If the liquidity is low, then high value trades could face extremely high slippage, even though low slippage routes exist.
+
+For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap fee. Meanwhile, an alternative multihop route also exists; pools 560 OSMO/UST and 561 OSMO/LUNA also have high liquidity, and both have only 0.2% swap fee. Because the multihop with (0.2% + 0.2% = )0.4% total swap fee incurs a lower swap fee than Pool 562 (at 0.535%), the multihop is preferred. Only in extreme cases would the slippage through the multihop be higher, and so in virtually every case, the multihop will offer thae better deal to the trader. Therefore, we do not include Pool 562 on the Trade page.   
+
+### Prerequisites
+
+- Pool has been created
+	- See: [How to create a Liquidity Pool](...)
+- The pool is acceptible.
+	- The criteria for 'acceptable' pools are *roughly* as follows:
+		- Contains only 2 tokens
+		- Contains a common Base Asset (i.e., OSMO, ATOM, or UST)
+		- 50/50 weighting
+		- 0% exit fee
+		- No future governor (set to blank (""))
+		- 0.2-0.3% swap fee
+		- Sufficient liquidity (at least USD $1000-worth)
+- All assets in pool have been added to the Osmosis Assets page
+	- See: [How to Add Assets onto the Osmosis Assets Page](...)
+
+### Requirements
+
+- Pool details:
+	- Pool number
+	- Pool assets
+		- Asset minimal denomination
+		- Asset IBC transfer path
+
+### Steps
+
+1. Review the [Osmosis Frontend Repo](https://github.com/osmosis-labs/osmosis-frontend) docs:
+    1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
+2. Submit a pull request branch with necessary changes to the following:
+	1. `src/stores/root.ts`:
+		- Add asset pairs to `GammSwapManager`:
+			- Order doesn't matter
+			- Note: for CW20 tokens, the minimal denomination is used. I.E., the original token contract is used, not the CW20-ICS20 contract 
+			- Note: for IBC mutlihop tokens, all IBC transfer details are required
+			- See examples below
+
+### Examples
+
+- Pool 1:
+	- This pool will be considered by the router when trading between OSMO and ATOM
+```
+{
+	poolId: '1',
+	currencies: [
+		{
+			coinMinimalDenom: DenomHelper.ibcDenom([{ portId: 'transfer', channelId: 'channel-0' }], 'uatom'),
+			coinDenom: 'ATOM',
+			coinDecimals: 6,
+		},
+		{
+			coinMinimalDenom: 'uosmo',
+			coinDenom: 'OSMO',
+			coinDecimals: 6,
+		},
+	],
+},
+```
+- Pool 631:
+	- This pool will be considered by the router when trading between OSMO and NETA, a foreign CW20 token
+```
+{
+	poolId: '631',
+	currencies: [
+		{
+			coinMinimalDenom: DenomHelper.ibcDenom(
+				[{ portId: 'transfer', channelId: 'channel-169' }],
+				'cw20:juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr'
+			),
+			coinDenom: 'NETA',
+			coinDecimals: 6,
+		},
+		{
+			coinMinimalDenom: 'uosmo',
+			coinDenom: 'OSMO',
+			coinDecimals: 6,
+		},
+	],
+},
+```
+- Pool 648:
+	- This pool will be considered by the router when trading between OSMO and PSTAKE, an IBC-multihop token
+```
+{
+	poolId: '648',
+	currencies: [
+		{
+			coinMinimalDenom: DenomHelper.ibcDenom(
+				[
+					{ portId: 'transfer', channelId: 'channel-4' },
+					{ portId: 'transfer', channelId: 'channel-38' },
+				],
+				'gravity0xfB5c6815cA3AC72Ce9F5006869AE67f18bF77006'
+			),
+			coinDenom: 'PSTAKE',
+			coinDecimals: 18,
+		},
+		{
+			coinMinimalDenom: 'uosmo',
+			coinDenom: 'OSMO',
+			coinDecimals: 6,
+		},
+	],
+},
+```
+
+### Next Steps
+
+
+
+## How to Add External Incentive Gauges onto the Osmosis Pools Page
