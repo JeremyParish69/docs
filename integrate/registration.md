@@ -12,10 +12,10 @@ The Cosmos Chain Registry is used as a single source of truth and is used to loo
     - See: [How to register a bech32 prefix onto SLIP173](...)
 - Registered to [SLIP44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) (if coin type is not like ATOM)
     - Note: Coin Type 118 represents the Cosmos Hub's ATOM token, registered listed in [SLIP44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md); many projects also default to using this coin type, while some have registered their own.
-- Assets listed on CoinGecko (optional)
-    - See: [How to enlist assets onto CoinGecko](...)
 - Chain added to Mintscan (optional)
     - See: [How to add a chain to Mintscan](...)
+- Assets listed on CoinGecko (optional)
+    - See: [How to enlist assets onto CoinGecko](...)
 
 ### Requirements
 
