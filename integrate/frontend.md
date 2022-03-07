@@ -21,14 +21,17 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     - Don't want to set up a Relayer? See: [Shop for a Relayer as a Service (RAAS) Provider](...) 
 - IBC token transfer has been validated
 	- See: [How to validate IBC token transfers](...)
+- Chain has a block explorer, either:
+	- Mintscan (preferred)
+		- See: [How to add a chain to Mintscan](...), or
+    - Any other Block explorer, e.g., Big Dipper, Pings, or a chain-dedicated explorer
 - Assets listed on CoinGecko (optional)
     - See: [How to enlist assets onto CoinGecko](...)
-- Chain added to Mintscan (optional)
-    - See: [How to add a chain to Mintscan](...)
-- Asset price added to Osmosis Zone (co-requisite)
-    - See: [How to Add Asset Price to Osmosis Zone](...)
 - An acceptable OSMO pool added to the Osmosis Trade page (co-requisite)
     - See: [How to Add a Pool to the Osmosis Trade Page](...)
+- Asset price oracle added to Osmosis Zone (co-requisite)
+    - See: [How to Specify Asset Price Oracle on Osmosis Zone (CoinGecko)](...)
+    - See: [How to Specify Asset Price Oracle on Osmosis Zone (Liquidity Pool)](...)
 
 ### Requirements
 
@@ -38,6 +41,8 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     - Coin type (slip44)
         - e.g., `coinType: 118,`
     - bech32 prefix
+    - Cosmos SDK version
+    	- Used to determine which 'features' must be specified
     - Gas prices
         - The low, average, and high gas prices so users can either save on fees or expedite transactions using Keplr wallet
 - Asset data:
@@ -54,8 +59,11 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     - Designate IBC Connection details:
         - Source channel (Osmosis' channel to the registering chain)
         - Destination channel (Registering chain's channel to Osmosis)
-    - CoinGecko ID (optional, but should be included if and when there is one)
-        - Refer to the latest [CoinGecko Coins List](https://api.coingecko.com/api/v3/coins/list)
+    - Asset Price Oracle (optional), either:
+    	- CoinGecko ID (optional, but should be included if and when one exists)
+    		- Refer to the latest [CoinGecko Coins List](https://api.coingecko.com/api/v3/coins/list), or
+        - `pool:<coin minimal denomination>` (default alternative, if no CoinGecko ID exists yet)
+        	- The alternatives should only be used if there is an acceptable pool with the new asset  
 - Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
 
 ### Steps
@@ -66,31 +74,28 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     - `public/assets/tokens/`:
         - Add token logo images
     - `src/config.ts`:
-        - Add Assets to `IBCAssetInfos` 
+        - Add Assets to `IBCAssetInfos`
             - See examples below
         - Add Chains to `EmbedChainInfos: ChainInfoWithExplorer`
             - Include the optimal RPC and REST APIs
             - Be sure to include coin type
             - Be sure to include bech32 prefix
             - Be sure to include stake, fee, and other currencies
-                - For each currency, be sure to include the CoinGecko ID, if one exists
+                - For each currency, be sure to include the Asset Price Oracle as `CoinGeckID:`
+                	- opt for a real CoinGecko ID, if one exists
+                	- otherwise, use `pool:<coin minimal denom>
             - Include features
-                - E.g., `features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx', 'ibc-go'],`
+            		- 'stargate' -- must be specified if using Cosmos SDK v0.40+
+    			- 'ibc-transfer' -- must be specified if IBC transfers following the ICS20 standard have been enabled on the chain
+    			- 'no-legacy-stdTx' -- must be specified if using Cosmos SDK v0.43+, but still recommended to specify, regardless of Cosmos SDK version
+    			- 'ibc-go' -- must be specified if using Cosmos SDK v0.43+, and import the ibc-go repository
+    			- E.g., `features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx', 'ibc-go'],`
             - Include gas price step
             - Include chain explorer path
                 - Opt for Mintscan, if available
                 - Note: watch out for and remove any dollar sign ($) in the URL, which may be included in the Explorer URL in the Cosmos Chain Registry
-	    - See example below
-3. Validate the deposit and withdrawal of the asset(s) from the staging link
-4. Any acceptable pools can be added to the Trade page
-    - The criteria for *acceptable* pools are roughly as follows:
-        - Contains only 2 tokens
-        - Contains a common Base Asset (i.e., OSMO, ATOM, or UST)
-        - 50/50 weighting
-        - 0% exit fee
-        - No future governor (set to blank (""))
-        - 0.2-0.3% swap fee
-        - Sufficient liquidity (at least USD $1000-worth) 
+	    - See examples below
+3. Validate the deposit and withdrawal of the asset(s) from the generated Cloudflare staging link
 
 ### Examples
 
@@ -200,7 +205,7 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
 
 - Pool has been created
 	- See: [How to create a Liquidity Pool](...)
-- The pool is acceptible.
+- Pool is acceptable
 	- The criteria for 'acceptable' pools are *roughly* as follows:
 		- Contains only 2 tokens
 		- Contains a common Base Asset (i.e., OSMO, ATOM, or UST)
@@ -211,6 +216,7 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
 		- Sufficient liquidity (at least USD $1000-worth)
 - All assets in pool have been added to the Osmosis Assets page
 	- See: [How to Add Assets onto the Osmosis Assets Page](...)
+- Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
 
 ### Requirements
 
@@ -226,7 +232,7 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
     1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
 2. Submit a pull request branch with necessary changes to the following:
 	1. `src/stores/root.ts`:
-		- Add asset pairs to `GammSwapManager`:
+		- Add asset pairs to `GammSwapManager`
 			- Order doesn't matter
 			- Note: for CW20 tokens, the minimal denomination is used. I.E., the original token contract is used, not the CW20-ICS20 contract 
 			- Note: for IBC mutlihop tokens, all IBC transfer details are required
@@ -301,7 +307,149 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
 },
 ```
 
-### Next Steps
+## How to Specify Asset Price Oracle on Osmosis Zone (Liquidity Pool)
+
+### Purpose
+
+This procedure will set up the default asset pricing mechanism for an asset to show its price throughout Osmosis Zone. If a CoinGecko Price feed exists, opt to use that instead (See: [How to Specify Asset Price Oracle on Osmosis Zone (CoinGecko)](...)). This pricing mechanism works by fetching the current spot price of the asset from a pool with an Asset of a known price. For exampe, we might not know the price of Foo coin directly, but we can assume it's price of, say, $2.oo by seeing that it's trading at 1 FOO per 2 UST in the FOO/UST pool.
+
+### Pre-requisites
+
+- Asset is in a Pool
+	- See: [How to create a Liquidity Pool](...)
+- Pool containing Asset is acceptable
+	- The criteria for 'acceptable' pools are *roughly* as follows:
+		- Contains only 2 tokens
+		- Contains a common Base Asset (i.e., OSMO, ATOM, or UST)
+		- 50/50 weighting
+		- 0% exit fee
+		- No future governor (set to blank (""))
+		- 0.2-0.3% swap fee
+		- Sufficient liquidity (at least USD $1000-worth)
+
+### Requirements
+
+- Pool details
+	- Number (Pool ID)
+	- Assets
+		- coin minimal denomination
+		- source channel(s) (if Asset is foreign)
+- Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
+
+### Steps
+
+1. Review the [Osmosis Frontend Repo](https://github.com/osmosis-labs/osmosis-frontend) docs:
+    1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
+2. Submit a pull request branch with necessary changes to the following:
+	- `src/stores/root.ts`
+		- Specify pool under `RootStore::constructor::priceStore::queriesStore`
+			- `alternativeCoinId: 'pool:<minimal coin denom>'`
+			- `poolID: '<pool number>',`
+			- `spotPriceSourceDenom: <asset of known price::coin minimal denomination>`
+			- `spotPriceDestDenom: <asset of unknown price::coin minimal denomination>`
+			- `destCoinId: 'osmosis'`
+			- See examples below
+	- `src/config.ts`
+		- Add the alternative coin Id under each specification of the Asset within `EmbedChainInfos: ChainInfoWithExplorer`
+			- E.g., `coinGeckoId: 'pool:ugraviton'`
+			- Note that many assets are listed as a staking currency, a fee payment currency, and as a trading currency for a chain; the coin Id should be added to each listing of the asset
+			- See example below
+
+### Examples
+
+- Pool 1:
+```
+{
+	alternativeCoinId: 'pool:uosmo',
+	poolId: '1',
+	spotPriceSourceDenom: 'uosmo',
+	spotPriceDestDenom: DenomHelper.ibcDenom([{ portId: 'transfer', channelId: 'channel-0' }], 'uatom'),
+	destCoinId: 'cosmos',
+},
+```
+- Pool 631:
+	- This pool contains a foreign CW20 token. Note how `cw20:` prefixes the contract address.
+```
+{
+	alternativeCoinId: 'pool:neta',
+	poolId: '631',
+	spotPriceSourceDenom: DenomHelper.ibcDenom(
+		[{ portId: 'transfer', channelId: 'channel-169' }],
+		'cw20:juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr'
+	),
+	spotPriceDestDenom: 'uosmo',
+	destCoinId: 'osmosis',
+},
+```
+- Pool 648:
+	- This pool contains an IBC-multihop token. Note how all transfer paths are included.
+```
+{
+	alternativeCoinId: 'pool:pstake',
+	poolId: '648',
+	spotPriceSourceDenom: DenomHelper.ibcDenom(
+		[
+			{ portId: 'transfer', channelId: 'channel-4' },
+			{ portId: 'transfer', channelId: 'channel-38' },
+		],
+		'gravity0xfB5c6815cA3AC72Ce9F5006869AE67f18bF77006'
+	),
+	spotPriceDestDenom: 'uosmo',
+	destCoinId: 'osmosis',
+},
+```
+
+Example of config.ts::EmbedChainInfos: ChainInfoWithExplorer:
+- Umee chain info:
+	- Note that `coinGeckoId: 'pool:uumee',` is specified three times, once under each listing of the currency
+```
+{
+	rpc: 'https://rpc.aphrodite.main.network.umee.cc',
+	rest: 'https://api.aphrodite.main.network.umee.cc',
+	chainId: 'umee-1',
+	chainName: 'Umee',
+	stakeCurrency: {
+		coinDenom: 'UMEE',
+		coinMinimalDenom: 'uumee',
+		coinDecimals: 6,
+		coinGeckoId: 'pool:uumee',
+		coinImageUrl: window.location.origin + '/public/assets/tokens/umee.png',
+	},
+	bip44: {
+		coinType: 118,
+	},
+	bech32Config: Bech32Address.defaultBech32Config('umee'),
+	currencies: [
+		{
+			coinDenom: 'UMEE',
+			coinMinimalDenom: 'uumee',
+			coinDecimals: 6,
+			coinGeckoId: 'pool:uumee',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/umee.png',
+		},
+	],
+	feeCurrencies: [
+		{
+			coinDenom: 'UMEE',
+			coinMinimalDenom: 'uumee',
+			coinDecimals: 6,
+			coinGeckoId: 'pool:uumee',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/umee.png',
+		},
+	],
+	features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx'],
+	explorerUrlToTx: 'https://www.mintscan.io/umee/txs/{txHash}',
+},
+```
+
+
+## How to Specify Asset Price Oracle on Osmosis Zone (CoinGecko)
+
+### Purpose
+
+This procedure will update the price oracle for the asset to instead use it's CoinGecko value for display on Osmosis Zone. This is preferred over the default price oracle mechanism. If there no CoinGecko price feed for the asset, we can still use the alternative method (See: [How to Specify Asset Price Oracle on Osmosis Zone (Liquidity Pool)](...)).
+
+
 
 
 
