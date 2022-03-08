@@ -81,9 +81,9 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
             - Be sure to include coin type
             - Be sure to include bech32 prefix
             - Be sure to include stake, fee, and other currencies
-                - For each currency, be sure to include the Asset Price Oracle as `CoinGeckID:`
+                - For each currency, be sure to include the Asset Price Oracle as `CoinGeckoID:`
                 	- opt for a real CoinGecko ID, if one exists
-                	- otherwise, use `pool:<coin minimal denom>
+                	- otherwise, use `pool:<coin minimal denom>`
             - Include features
             		- 'stargate' -- must be specified if using Cosmos SDK v0.40+
     			- 'ibc-transfer' -- must be specified if IBC transfers following the ICS20 standard have been enabled on the chain
