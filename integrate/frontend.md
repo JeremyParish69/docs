@@ -4,7 +4,7 @@
 
 ### Purpose
 
-Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosis-frontend) to have the Asset appear on the [Assets page of osmosis.zone](https://app.osmosis.zone/assets) 
+Add assets to the [Osmosis frontend repo](https://github.com/osmosis-labs/osmosis-frontend) to have the Asset appear on the [Assets page of osmosis.zone](https://app.osmosis.zone/assets) 
 ![image](https://user-images.githubusercontent.com/95667791/155814828-64d5f650-f0cf-4dd2-8d81-48353ef4e3cb.png)
 ![image](https://user-images.githubusercontent.com/95667791/155814848-99785446-c0ef-48d9-9926-20c277d17d6e.png)
 
@@ -63,7 +63,8 @@ Add assets [to the Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
     	- CoinGecko ID (optional, but should be included if and when one exists)
     		- Refer to the latest [CoinGecko Coins List](https://api.coingecko.com/api/v3/coins/list), or
         - `pool:<coin minimal denomination>` (default alternative, if no CoinGecko ID exists yet)
-        	- The alternatives should only be used if there is an acceptable pool with the new asset  
+        	- The alternatives should only be used if there is an acceptable pool with the new asset
+- Enough OSMO for the pool creation fee and initial liquidity of an OSMO pool 
 - Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
 
 ### Steps
@@ -133,57 +134,70 @@ Examples of config.ts::IBCAssetInfos:
     },
 ```
 
-Examples of config.ts::EmbedChainInfos: ChainInfoWithExplorer:
+Example of config.ts::EmbedChainInfos: ChainInfoWithExplorer:
+	- Juno chain, with native asset JUNO listed as a stake, fee, and currency token.
+	- Note: CW20 assets have a the asset symbol appended to the contract address as the coinMinimalDenom.
 ```
-	{
-		rpc: 'https://gravitychain.io:26657',
-		rest: 'https://gravitychain.io:1317',
-		chainId: 'gravity-bridge-3',
-		chainName: 'Gravity Bridge',
-		stakeCurrency: {
-			coinDenom: 'GRAV',
-			coinMinimalDenom: 'ugraviton',
+{
+	rpc: 'https://rpc-juno.keplr.app',
+	rest: 'https://lcd-juno.keplr.app',
+	chainId: 'juno-1',
+	chainName: 'Juno',
+	stakeCurrency: {
+		coinDenom: 'JUNO',
+		coinMinimalDenom: 'ujuno',
+		coinDecimals: 6,
+		coinGeckoId: 'juno-network',
+		coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
+	},
+	bip44: {
+		coinType: 118,
+	},
+	bech32Config: Bech32Address.defaultBech32Config('juno'),
+	currencies: [
+		{
+			coinDenom: 'JUNO',
+			coinMinimalDenom: 'ujuno',
 			coinDecimals: 6,
-			coinGeckoId: 'pool:ugraviton',
-			coinImageUrl: window.location.origin + '/public/assets/tokens/grav.svg',
+			coinGeckoId: 'juno-network',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
 		},
-		bip44: {
-			coinType: 118,
+		{
+			type: 'cw20',
+			contractAddress: 'juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr',
+			coinDenom: 'NETA',
+			coinMinimalDenom: 'cw20:juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr:NETA',
+			coinDecimals: 6,
+			coinGeckoId: 'neta',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/neta.svg',
 		},
-		bech32Config: Bech32Address.defaultBech32Config('gravity'),
-		currencies: [
-			{
-				coinDenom: 'GRAV',
-				coinMinimalDenom: 'ugraviton',
-				coinDecimals: 6,
-				coinGeckoId: 'pool:ugraviton',
-				coinImageUrl: window.location.origin + '/public/assets/tokens/grav.svg',
-			},
-			{
-				coinDenom: 'PSTAKE',
-				coinMinimalDenom: 'gravity0xfB5c6815cA3AC72Ce9F5006869AE67f18bF77006',
-				coinDecimals: 18,
-				// coinGeckoId: 'pstake',
-				coinImageUrl: window.location.origin + '/public/assets/tokens/pstake.png',
-			},
-		],
-		feeCurrencies: [
-			{
-				coinDenom: 'GRAV',
-				coinMinimalDenom: 'ugraviton',
-				coinDecimals: 6,
-				coinGeckoId: 'pool:ugraviton',
-				coinImageUrl: window.location.origin + '/public/assets/tokens/grav.svg',
-			},
-		],
-		gasPriceStep: {
+		{
+			type: 'cw20',
+			contractAddress: 'juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl',
+			coinDenom: 'MARBLE',
+			coinMinimalDenom: 'cw20:juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl:MARBLE',
+			coinDecimals: 3,
+			coinGeckoId: 'pool:marble',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/marble.svg',
+		},
+	],
+	feeCurrencies: [
+		{
+			coinDenom: 'JUNO',
+			coinMinimalDenom: 'ujuno',
+			coinDecimals: 6,
+			coinGeckoId: 'juno-network',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
+		},
+	],
+	gasPriceStep: {
 			low: 0,
 			average: 0,
 			high: 0.035,
-		},
-		features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx', 'ibc-go'],
-		explorerUrlToTx: 'https://www.mintscan.io/gravity-bridge/txs/{txHash}',
 	},
+	features: ['stargate', 'ibc-transfer'],
+	explorerUrlToTx: 'https://www.mintscan.io/juno/txs/{txHash}',
+},
 ```
 
 ### Next Steps
@@ -203,10 +217,12 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
 
 ### Prerequisites
 
-- Pool has been created
+- All assets in pool have been added to the Osmosis Assets page
+	- See: [How to Add Assets onto the Osmosis Assets Page](...)
+-  Pool has been created
 	- See: [How to create a Liquidity Pool](...)
 - Pool is acceptable
-	- The criteria for 'acceptable' pools are *roughly* as follows:
+	- The criteria for acceptable pools are *roughly* as follows:
 		- Contains only 2 tokens
 		- Contains a common Base Asset (i.e., OSMO, ATOM, or UST)
 		- 50/50 weighting
@@ -214,8 +230,6 @@ For example, Pool 562 LUNA/UST has high liquidity, but also incurs 0.535% swap f
 		- No future governor (set to blank (""))
 		- 0.2-0.3% swap fee
 		- Sufficient liquidity (at least USD $1000-worth)
-- All assets in pool have been added to the Osmosis Assets page
-	- See: [How to Add Assets onto the Osmosis Assets Page](...)
 - Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
 
 ### Requirements
@@ -449,8 +463,110 @@ Example of config.ts::EmbedChainInfos: ChainInfoWithExplorer:
 
 This procedure will update the price oracle for the asset to instead use it's CoinGecko value for display on Osmosis Zone. This is preferred over the default price oracle mechanism. If there no CoinGecko price feed for the asset, we can still use the alternative method (See: [How to Specify Asset Price Oracle on Osmosis Zone (Liquidity Pool)](...)).
 
+### Pre-requisites
 
+- Asset has been added to the Osmosis Assets page
+	- See: [How to Add Assets onto the Osmosis Assets Page](...)
+- Assets listed on CoinGecko (optional)
+    - See: [How to enlist assets onto CoinGecko](...)
+- Asset has a working price feed on CoinGecko
 
+### Requirements
+
+- Asset CoinGecko ID
+	- Refer to the latest [CoinGecko Coins List](https://api.coingecko.com/api/v3/coins/list)
+- Basic understanding of GitHub, knowing how to fork, create a branch, commit changes, and submit a Pull Request
+
+### Steps
+
+1. Review the [Osmosis Frontend Repo](https://github.com/osmosis-labs/osmosis-frontend) docs:
+    1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
+2. Submit a pull request branch with necessary changes to the following:
+	- `src/config.ts`
+		- Add the asset CoinGecko ID under each specification of the Asset within `EmbedChainInfos: ChainInfoWithExplorer`
+			- E.g., `coinGeckoId: 'juno-network'`
+			- Note that many assets are listed as a staking currency, a fee payment currency, and as a trading currency for a chain; the coin Id should be added to each listing of the asset
+			- See example below
+
+### Example
+
+```
+{
+	rpc: 'https://rpc-juno.keplr.app',
+	rest: 'https://lcd-juno.keplr.app',
+	chainId: 'juno-1',
+	chainName: 'Juno',
+	stakeCurrency: {
+		coinDenom: 'JUNO',
+		coinMinimalDenom: 'ujuno',
+		coinDecimals: 6,
+		coinGeckoId: 'juno-network',
+		coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
+	},
+	bip44: {
+		coinType: 118,
+	},
+	bech32Config: Bech32Address.defaultBech32Config('juno'),
+	currencies: [
+		{
+			coinDenom: 'JUNO',
+			coinMinimalDenom: 'ujuno',
+			coinDecimals: 6,
+			coinGeckoId: 'juno-network',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
+		},
+		{
+			type: 'cw20',
+			contractAddress: 'juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr',
+			coinDenom: 'NETA',
+			coinMinimalDenom: 'cw20:juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr:NETA',
+			coinDecimals: 6,
+			coinGeckoId: 'neta',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/neta.svg',
+		},
+		{
+			type: 'cw20',
+			contractAddress: 'juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl',
+			coinDenom: 'MARBLE',
+			coinMinimalDenom: 'cw20:juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl:MARBLE',
+			coinDecimals: 3,
+			coinGeckoId: 'pool:marble',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/marble.svg',
+		},
+	],
+	feeCurrencies: [
+		{
+			coinDenom: 'JUNO',
+			coinMinimalDenom: 'ujuno',
+			coinDecimals: 6,
+			coinGeckoId: 'juno-network',
+			coinImageUrl: window.location.origin + '/public/assets/tokens/juno.svg',
+		},
+	],
+	features: ['stargate', 'ibc-transfer'],
+	explorerUrlToTx: 'https://www.mintscan.io/juno/txs/{txHash}',
+},
+```
 
 
 ## How to Add External Incentive Gauges onto the Osmosis Pools Page
+
+### Purpose
+
+Projects can permissionlessly add external incentive gauges for bonded LP positions. This procedure instructs how to display those incentive gauges on a pool's page as extra rewards.
+
+![image](https://user-images.githubusercontent.com/95667791/157994437-a2a90c29-1f88-475f-afff-7c64b9060e54.png)
+
+### Pre-requisites
+
+- Asset has been added to the Osmosis Zone Assets page
+- Pool has been created
+- Gauge(s) have been created
+
+### Requirements
+
+- Gauge IDs
+
+### Steps
+
+### Examples
