@@ -553,20 +553,55 @@ This procedure will update the price oracle for the asset to instead use it's Co
 
 ### Purpose
 
-Projects can permissionlessly add external incentive gauges for bonded LP positions. This procedure instructs how to display those incentive gauges on a pool's page as extra rewards.
+Projects can permissionlessly add external incentive gauges for bonded LP positions. This procedure instructs how to display those incentive gauges on a pool's page as extra rewards. Shown below is an example of external incentives added to the CHEQ / OSMO pool.
 
 ![image](https://user-images.githubusercontent.com/95667791/157994437-a2a90c29-1f88-475f-afff-7c64b9060e54.png)
 
 ### Pre-requisites
 
 - Asset has been added to the Osmosis Zone Assets page
+	- See: [How to Add an Asset onto the Osmosis Assets page](...)
 - Pool has been created
-- Gauge(s) have been created
+	- See: [How to Create a Liquidity Pool](...)
+- External Incentive Gauge(s) have been created
+	- See: [How to Add an External Incentive Gauge to a Liquidity Pool](https://docs.osmosis.zone/developing/modules/spec-incentives.html#overview)
 
 ### Requirements
 
-- Gauge IDs
+- External Incentive Gauge(s) details:
+	- Gauge ID
+	- Destributed token Denomination (e.g., 'ibc/...')
+	- Pool Number
 
 ### Steps
 
+1. Review the [Osmosis Frontend Repo](https://github.com/osmosis-labs/osmosis-frontend) docs:
+    1. [README.md](https://github.com/osmosis-labs/osmosis-frontend/blob/master/README.md)
+2. Submit a pull request branch with necessary changes to the following:
+	- `src/config.ts`
+		- Add the Pool Number under `LockupAbledPoolIds` with a `true` value
+			- E.g., `'602': true,`
+			- This steps permits users to bond their GAMM of this pool for a bonding duration
+		- Add a container for the pool under `ExtraGaugeInPool`
+			- E.g., `'602': []`
+			- Within the pool container, add the External Incentive Gauges
+				- For each External Incentive Gaugue, include:
+					- Gauge ID, and
+					- Destributed Token Denomination
+				- E.g., `{ gaugeId: '2127', denom: 'ibc/7A08C6F11EF0F59EB841B9F788A87EC9F2361C7D9703157EC13D940DC53031FA', },`
+
 ### Examples
+
+Example of Cheq External Incentives for pool #602, under config.ts::ExtraGaugeInPool:
+```
+	'602': [
+		{
+			gaugeId: '2127',
+			denom: 'ibc/7A08C6F11EF0F59EB841B9F788A87EC9F2361C7D9703157EC13D940DC53031FA',
+		},
+		{
+			gaugeId: '2128',
+			denom: 'ibc/7A08C6F11EF0F59EB841B9F788A87EC9F2361C7D9703157EC13D940DC53031FA',
+		},
+	],
+```
