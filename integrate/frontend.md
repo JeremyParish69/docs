@@ -570,7 +570,7 @@ Projects can permissionlessly add external incentive gauges for bonded LP positi
 
 - External Incentive Gauge(s) details:
 	- Gauge ID
-	- Destributed token Denomination (e.g., 'ibc/...')
+	- Destributed Token Denomination (e.g., 'ibc/...')
 	- Pool Number
 
 ### Steps
@@ -589,6 +589,7 @@ Projects can permissionlessly add external incentive gauges for bonded LP positi
 					- Gauge ID, and
 					- Destributed Token Denomination
 				- E.g., `{ gaugeId: '2127', denom: 'ibc/7A08C6F11EF0F59EB841B9F788A87EC9F2361C7D9703157EC13D940DC53031FA', },`
+			- See example below
 
 ### Examples
 
