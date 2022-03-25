@@ -154,7 +154,7 @@ From [coingecko.com/en/methodology](https://www.coingecko.com/en/methodology):
 ### Steps
 
 1. Review CoinGecko's [Methodology page](https://www.coingecko.com/en/methodology)
-    2. Pay special attention to the following sections:
+	1. Pay special attention to the following sections:
         - 'Listings',
         - 'Listing Criteria',
         - 'Do's and Don'ts for Listing Submission', and
