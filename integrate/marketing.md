@@ -26,9 +26,11 @@ Examples:
 - [Sentinel's Meme Competition](https://twitter.com/OsmoMinistryMkt/status/1466923415986573312)
 - [BitCanna's Meme Competition](https://twitter.com/OsmoMinistryMkt/status/1459957529635536897)
 
-### Sponsored Custom Graphics
+### Sponsored Graphics
 
 The Osmosis Ministry of Marketing can commission graphics to promote newly listed assets, specific pools, external incentives on specific pools, and significant governance proposals. These will be shared on many platforms to maximaize visibility (Twitter, Discord, Reddit, Instragram, Facebook, Medium, etc.).
+
+We let our talented artists run with their ideas on how best to produce an attractive graphic. If a project would like to collaborate on the artisitc design aspects or upgrade the graphic to a short video clip, it will incur an extra fee which can be priced upon discussion.
 
 Fee 25 OSMO
 
