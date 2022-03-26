@@ -5,8 +5,8 @@
 
 | Relayer | Contact | How to Support | Support for new relayers | Chains Relaying with Osmosis |
 | -------- 						| -------- 		| ---								 | --- 																							 | --- 							|
-| 3Tekos 						| contact@3tekos.fr <br> Twitter [@3Tekos](https://twitter.com/3Tekos) <br> Telegram @remi3tekos, @jayjay38 |	:lock: Delegate to 3Tekos on: Stargaze, Desmos, Kava, KiChain, Gravity Bridge, Fetch.ai, BitCanna, E-Money, Sifchain, Band Protocol, Microtick, Rizon, Lum, and Ixo <br> :pray: Donations accepted @ <sup><sub>`osmo1a58ecyz6jrz3psgfwd6724mh46338wlt6z6q7f`</sub></sup>	| :information_desk_person: Supports new relayers								| Stargaze, Juno, Desmos, BitCanna, Sifchain, Gravity Bridge, Kava, Kichain, Band Protocol, Evmos, Fetch.ai, Microtick, Ixo |
-| [3ventures.io](https://www.3ventures.io/)	| Telegram [Threeventures chat](https://t.me/threeventures), @ossca	|	 |  | Umee, Stargaze, Gravity Bridge, Chihuahua, Comdex, Evmos |
+| 3Tekos 						| contact@3tekos.fr <br> Twitter [@3Tekos](https://twitter.com/3Tekos) <br> Telegram @remi3tekos, @jayjay38 |	:lock: Delegate to 3Tekos on: Stargaze, Desmos, Kava, KiChain, Gravity Bridge, Fetch.ai, BitCanna, E-Money, Sifchain, Band Protocol, Microtick, Rizon, Lum, and Ixo <br> :pray: Donations accepted @ <sup><sub>`osmo1a58ecyz6jrz3psgfwd6724mh46338wlt6z6q7f`</sub></sup>	| :information_desk_person: Supports new relayers	| Stargaze, Juno, Desmos, BitCanna, Sifchain, Gravity Bridge, Kava, Kichain, Band Protocol, Evmos, Fetch.ai, Microtick, Ixo |
+| [3ventures.io](https://www.3ventures.io/)	| team@3ventures.io <br> Twitter [@3venturesio](https://twitter.com/3venturesio) <br> Telegram [Threeventures chat](https://t.me/threeventures), @ossca	|	:lock: Delegate to 3ventures.io on: Chihuahua, Stargaze, Deweb, Axelar, Gravity Bridge, Umee, Comdex, Evmos | :information_desk_person: Supports new relayers | Umee, Stargaze, Gravity Bridge, Chihuahua, Comdex, Evmos |
 | BlockNgine					| Discord BlockNgine#7943 <br> Telegram @NGINE 																		|								|
 | Blockscope | Telegram @gamjah_fk | |
 | [Bro_n_Bro](https://monitor.bronbro.io/) | Twitter @bro_n_bro																			| |
