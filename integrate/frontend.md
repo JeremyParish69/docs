@@ -26,7 +26,7 @@ Add assets to the [Osmosis frontend repo](https://github.com/osmosis-labs/osmosi
 		- See: [How to add a chain to Mintscan](...), or
     - Any other Block explorer, e.g., Big Dipper, Ping, or a chain-dedicated explorer
 - Assets listed on CoinGecko (optional)
-    - See: [How to enlist assets onto CoinGecko](...)
+    - See: [How to Enlist an Asset onto CoinGecko](...)
 - An acceptable OSMO pool added to the Osmosis Trade page (co-requisite)
     - See: [How to Add a Pool to the Osmosis Trade Page](...)
 - Asset price oracle added to Osmosis Zone (co-requisite)
