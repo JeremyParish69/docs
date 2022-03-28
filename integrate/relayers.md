@@ -26,7 +26,7 @@
 | SpacePotato					| Telegram @spacepotayto 		|								|
 | [Staketab](https://staketab.com/) | Twitter @staketab <br> Telegram @ducca	|	 | | Desmos, Stargaze, Umee, OmniFlix, Evmos |
 | Strangelove-ventures			| Telegram @jackzampolin	<br> Twitter @strangelovefund 										| 						 		|
-| Witval | validators@vitwit.com <br> Telegram @vitwit, @anilcse | :lock: Delegate to Witval on: Osmosis <sup><sub>`osmovaloper1ddle9tczl87gsvmeva3c48nenyng4n56yscals`</sub></sup>, Cosmos Hub, Regen, Akash, Desmos, Juno, Stargaze, Gravity Bridge, Evmos, Agoric, Comdex, E-money, OmniFlix, Persistence, Sentinel | :heavy_dollar_sign: Offers Relaying as a Service (RaaS) (contact directly for pricing) <br> :information_desk_person: Supports new relayers | Cosmos Hub, Regen, Akash, Juno, Persistence, Comdex, Sentinel, Stargaze, Gravity Bridge, Provenance |
+| [Witval](http://Vitwit.com) | validators@vitwit.com <br> Twitter @vitwit_, @anilcse_ <br> Telegram @anilcse | :lock: Delegate to Witval on: Osmosis <sup><sub>`osmovaloper1ddle9tczl87gsvmeva3c48nenyng4n56yscals`</sub></sup>, Cosmos Hub, Regen, Akash, Desmos, Juno, Stargaze, Gravity Bridge, Evmos, Agoric, Comdex, E-money, OmniFlix, Persistence, Sentinel | :heavy_dollar_sign: Offers Relaying as a Service (RaaS) (contact directly for pricing) <br> :information_desk_person: Supports new relayers | Cosmos Hub, Regen, Akash, Juno, Persistence, Comdex, Sentinel, Stargaze, Gravity Bridge, Provenance |
 
 
 
