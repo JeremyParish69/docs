@@ -65,5 +65,10 @@ Please reach out to our Chief Editor, RoboMcGobo, on Telegram: @RoboMcGobo
 
 In many cases, the Osmosis Ministry of Marketing Twitter account can retweet an integrating project's promotional Tweet at no extra charge.
 
-Please reach out to our primary Twitter Manager, MadCatAttack, on Telegram: @MadCatAttack
+
+Please reach out to our primary Twitter Manager, MadCatAttack:
+- Telegram: @MadCatAttack
+- Twitter:  @madcatattack1
+
+
 
