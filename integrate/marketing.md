@@ -2,11 +2,10 @@
 
 ## About
 
-The Osmosis Ministry of Marketing was formed to help market Osmosis. Don't hestitate to reach out to [osmosismarketing@osmosisdao.team](osmosismarketing@osmosisdao.team). There exist many opportunites to better market a project and its assets, and feel free to suggest new marketing ideas that aren't listed. 
+The Osmosis Ministry of Marketing was formed to help market Osmosis. Don't hestitate to reach out to [osmosismarketing@osmosisdao.team](osmosismarketing@osmosisdao.team). There exist many opportunites to better market a project and its assets, and feel free to suggest new marketing ideas that aren't listed.
+
 
 ## Marketing Opportunities
-
-<br>
 
 ### Co-sponsored Twitter Competition
 
