@@ -9,7 +9,7 @@ The Osmosis Ministry of Marketing was formed to help market Osmosis. Don't hesti
 
 ### Co-sponsored Twitter Competition
 
-An art competition, such as a Meme creation competition run on Twitter is a great way to get people excited about a project and to help spread awareness by requiring tagging, sharing, and/or retweeting as part of the qualification requirements. Historically, these have been meme-compoetitions (who can make the funniest memes?), but it could also be serious art, or, really, anything else.
+An art competition, such as a Meme creation competition run on Twitter is a great way to get people excited about a project and to help spread awareness by requiring tagging, sharing, and/or retweeting as part of the qualification requirements. Historically, these have been meme-competitions (who can make the funniest memes?), but it could also be serious art, or, really, anything else.
 
 Osmosis Ministry of Marketing Sponsorship Amounts:
 - 1st place: 69 OSMO
