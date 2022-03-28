@@ -23,7 +23,9 @@ Sponsoring Porject Amounts:
 
 See: [Osmosis Ministry of Marketing Twitter](https://twitter.com/OsmoMinistryMkt)
 
-Please reach out to our primary Twitter Manager, MadCatAttack, on Telegram: @MadCatAttack
+Please reach out to our primary Twitter Manager, MadCatAttack:
+- Telegram: @MadCatAttack
+- Twitter:  @madcatattack1
 
 Examples:
 - [Chihuahua's Meme Competition](https://twitter.com/OsmoMinistryMkt/status/1484864183795691522)
