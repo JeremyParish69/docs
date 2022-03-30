@@ -16,7 +16,7 @@ Osmosis Ministry of Marketing Sponsorship Amounts:
 - 2nd place: 20 OSMO
 - 3rd place: 4 OSMO
 
-Sponsoring Porject Amounts:
+Sponsoring Project Amounts:
 - Can be virtually any amount, but should at least be worth the OMM Sponsorship amounts.
 - Should have an amount for 1st, 2nd, 3rd place winners
 
