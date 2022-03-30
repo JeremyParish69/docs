@@ -23,6 +23,7 @@ Sponsoring Project Amounts:
 See: [Osmosis Ministry of Marketing Twitter](https://twitter.com/OsmoMinistryMkt)
 
 Please reach out to our primary Twitter Manager, MadCatAttack:
+- Email: madcat@osmosisdao.team
 - Telegram: @MadCatAttack
 - Twitter:  @madcatattack1
 
@@ -41,7 +42,9 @@ We let our talented artists run with their ideas on how best to produce an attra
 
 Fee 25 OSMO
 
-Please reach out to our Art Director, Kych, on Telegram: @kychuli
+Please reach out to our Art Director, Kych:
+- Email: Kych@osmosisdao.team
+- Telegram: @kychuli
 
 Examples:
 ![MarbleDao_listing_2k_v0003](https://user-images.githubusercontent.com/95667791/160200726-93aeb660-244b-4f9f-affa-86525cc095b3.png)
@@ -56,7 +59,9 @@ The Osmosis Ministry of Marketing can commission a writer to briefly discuss a p
 
 Fee 15 OSMO
 
-Please reach out to our Chief Editor, RoboMcGobo, on Telegram: @RoboMcGobo
+Please reach out to our Chief Editor, RoboMcGobo:
+- Email: Robert@osmosisdao.team
+- Telegram: @RoboMcGobo
 
 <br>
 
@@ -66,6 +71,7 @@ In many cases, the Osmosis Ministry of Marketing Twitter account can retweet an 
 
 
 Please reach out to our primary Twitter Manager, MadCatAttack:
+- Email: madcat@osmosisdao.team
 - Telegram: @MadCatAttack
 - Twitter:  @madcatattack1
 
