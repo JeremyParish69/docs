@@ -11,6 +11,7 @@ When integrating a new asset, Osmosis Zone recommends at least USD $1000-worth o
 	- Alternatively, it is possible to create an asymmetrically-weighted liquidity pool to reduce the requirement for the base asset (e.g., 80% FOO::20% OSMO). However, Osmosis Foundation now strongly recommends only creating 50/50 pools
 	- See: [GAMM Module: Create pool](https://docs.osmosis.zone/developing/modules/spec-gamm.html#create-pool) for the CLI command to create a pool
 	- If the asset has already been [added onto the Osmosis Zone Assets page](https://docs.osmosis.zone/integrate/frontend.html#how-to-add-an-asset-onto-the-osmosis-assets-page), then a new pool can be creating using the [Osmosis Zone Pools page](https://app.osmosis.zone/pools)
+		- See: [Create a new pool](https://docs.osmosis.zone/overview/osmosis-app/#create-a-new-pool)
 - Initiate a Liquidity Bootstrapping Pool (LBP)
 	- A Liquidity Bootstrapping Pool (LBP) is a unique type of Liquidity Pool where the weighting for each contained asset linearly changes over time.
 		- Choose any starting weights, ending weights, and weight change duration
