@@ -38,6 +38,10 @@ When integrating a new asset, Osmosis Zone recommends at least USD $1000-worth o
 			- On-chain Proposal: [Mintscan Osmosis Proposal 99](https://www.mintscan.io/osmosis/proposals/99)
 			- Commonwealth Posts: [1](https://commonwealth.im/osmosis/discussion/2882-details-and-parameters-of-stargaze-lbp-on-osmosis), [2](https://commonwealth.im/osmosis/discussion/2494-signaling-proposal-for-osmo-for-stars-token-swap)
 
+## Additional Liquidity
+
+As more liquidity becomes available to users, either through mining, airdrops, or giveaways, it could be strategic to incentivize more liquidity to be added to Osmosis liquidity pools to ensure there is a consistent market for the new asset. See the [Incentives page](...)(coming soon) to learn more about Osmosis Liquidity Mining Rewards, External Gauge Incentives, and Superfluid Staking. 
+
 ## Creating a Liquidity Bootstrapping Pool
 
 The below is an example of the pool.json file for a [liquidity bootstrapping pool](https://docs.osmosis.zone/overview/osmosis-app/learn-more.html#liquidity-bootstrapping-pools).
