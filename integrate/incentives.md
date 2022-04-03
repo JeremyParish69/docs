@@ -41,3 +41,9 @@ Although pools must be voted in to be onboarded to recieve Osmosis Liquidity Min
 As an example, we can see how MARBLE was onboarded into the set of pools to receive internal Osmosis Liquidity Mining rewards: 
 - See: [Commonwealth post: Signaling Proposal: Add MARBLE Incentivized Pool (#649 OSMO)](https://commonwealth.im/osmosis/discussion/3982-signaling-proposal-add-marble-incentivized-pool-649-osmo)
 - See: [Osmosis Proposal #180: Signalling proposal for MARBLE/OSMO(#649) incentivized pool.](https://www.mintscan.io/osmosis/proposals/180)
+
+## Superfluid Staking
+
+Osmosis Superfluid Staking can further incentives users to provide liquidity to a pool and staking it for additional staking rewards. The rewards from superfluid staking come from the OSMO in the pool being staked, so only OSMO pools can qualify for superfluid staking.
+
+Currently, there is no strict criteria on which pools may have Superfluid staking enabled. The feature is enabled for certain pools via on-chain governance. The reason Osmosis hasn't simply allowed all OSMO pools to enable Superfluid staking is because if there is a sudden extreme loss of value in an asset paired with OSMO, the OSMO side of the pool with be skrink significantly, and this poses a risk to the protocol. The superfluid staked OSMO is supposed to be safely staked and untouchable, like all staked OSMO, for at least 14-days (the duration on the unbonding period), but if the amount of OSMO in a pool suddenly shrinks then it essentially has the effect of releasing staked OSMO before the 14-days. This is why governance must assess whether a pool seems stable before enabling superfluid staking for it. The token and project should seem legitimate to the community, have significant amount of liquidity, and have been around for a decent amount of time. 
