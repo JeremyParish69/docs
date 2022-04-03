@@ -50,3 +50,6 @@ Currently, there is no strict criteria on which pools may have Superfluid stakin
 
 There has so far been no proven way to hasten the enabling of superfluid staking for a pool, although one could always try to gather suppport from the community and then propose on-chain to enable the feature for the pool.
 
+## Interfluid Staking
+
+Similar to how superfluid staking stakes a portion of the OSMO in a pool, Interfluid staking stakes a portion of the pair asset (e.g., FOO) on the corresponding foreign chain (e.g., on Foochain), but this feature is not yet live on Osmosis. 
